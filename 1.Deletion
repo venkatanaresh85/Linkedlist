@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct Node{
+    int data;
+    Node* next;
+    Node(int data1,Node* next1){
+        data=data1;
+        next=next1;
+    }
+    Node(int data1){
+        data=data1;
+        next=nullptr;
+    }
+};
+Node* convertIntoLL(vector<int>& v){
+    Node* head=new Node(v[0]);// 0x100
+    Node* mover=head;//0x100-10
+    for(int i=1;i<v.size();i++){
+        Node* temp=new Node(v[i]);//0x200-20
+        mover->next=temp;//0x100->0x200
+        mover=temp;//0x200->0x300
+    }
+    return head;
+}
+Node* deletehead(Node* head){
+   Node* temp=head;
+   head=head->next;
+   delete temp;
+   return head;
+}
+Node* deleteTail(Node* head){
+    if(head==nullptr || head->next==nullptr){//10*0x100 20*0x200 30*0x300 40*0x400 50*null
+        return nullptr;
+    }
+    Node* temp=head;
+    while(temp->next->next!=nullptr){
+        temp=temp->next;
+    }
+    delete temp->next;
+    temp->next=nullptr;
+    return head;
+    
+}
+void print(Node* head){
+    Node* temp=head;
+    while(temp!=nullptr){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+int main(){
+   vector<int> v={10,20,30,40,50};
+   Node* head=convertIntoLL(v);
+   head=deleteTail(head);
+   print(head);
+   
+}
