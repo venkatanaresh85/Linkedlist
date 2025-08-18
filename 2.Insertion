@@ -101,5 +101,4 @@ int main(){
    Node* head=convertIntoLL(v);
    head=InsertLast(head,80);
    print(head);
-   
 }
