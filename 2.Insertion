@@ -44,3 +44,62 @@ int main(){
    print(head);
    
 }
+
+#Insert at End
+#include<bits/stdc++.h>
+using namespace std;
+struct Node{
+    int data;
+    Node* next;
+    Node(int data1,Node* next1){
+        data=data1;
+        next=next1;
+    }
+    Node(int data1){
+        data=data1;
+        next=nullptr;
+    }
+};
+Node* convertIntoLL(vector<int>& v){
+    Node* head=new Node(v[0]);// 0x100
+    Node* mover=head;//0x100-10
+    for(int i=1;i<v.size();i++){
+        Node* temp=new Node(v[i]);//0x200-20
+        mover->next=temp;//0x100->0x200
+        mover=temp;//0x200->0x300
+    }
+    return head;
+}
+Node* InsertBegin(Node* head,int val){
+    Node* temp=new Node(val);
+    temp->next=head;//0x200
+    return temp;
+    
+}
+Node* InsertLast(Node* head,int val){
+if(head==nullptr){
+    return new Node(val);
+}
+ Node* temp=head;
+  while(temp->next!=NULL){
+    temp=temp->next;
+  }
+  Node* newnode=new Node(val);
+   temp->next=newnode;
+ return head;
+}
+
+void print(Node* head){
+    Node* temp=head;
+    while(temp!=nullptr){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+int main(){
+   vector<int> v={10,20,30,40,50};
+   Node* head=convertIntoLL(v);
+   head=InsertLast(head,80);
+   print(head);
+   
+}
