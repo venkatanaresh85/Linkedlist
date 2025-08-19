@@ -1,0 +1,24 @@
+//Find the mid of linkedlist
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+      ListNode* temp=head;
+      int cnt=0;
+      while(temp!=nullptr){
+        cnt++;
+        temp=temp->next;
+      }
+      int mid=cnt/2+1;
+      temp=head;
+      int cn=0;
+      while(temp!=nullptr){
+        cn++;
+        if(cn==mid){
+            break;
+        }
+        temp=temp->next;
+      }
+      return temp;
+    }
+};
